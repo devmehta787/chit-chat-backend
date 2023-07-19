@@ -38,11 +38,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import models.User;
-
+import models.UserDto;
 import ninja.jpa.UnitOfWork;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.inject.persist.Transactional;
 
 
 public class UserDao {
@@ -50,29 +51,65 @@ public class UserDao {
     @Inject
     Provider<EntityManager> entityManagerProvider;
     
+
+    @Transactional
+    public UserDto addNewUser(UserDto userDto) {
+        
+        EntityManager entityManager = entityManagerProvider.get();
+        
+        User user = new User();
+
+        user.setUsername(userDto.getUsername());
+        user.setPassword(userDto.getPassword());
+        user.setFullname(userDto.getFullname());
+        user.setEmail(userDto.getEmail());
+        user.setPhone(userDto.getPhone());
+        
+        entityManager.persist(user);
+        
+        return userDto;
+        
+    }
     @UnitOfWork
     public boolean isUserAndPasswordValid(String username, String password) {
-        
+
         if (username != null && password != null) {
-            
+
             EntityManager entityManager = entityManagerProvider.get();
-            
-            TypedQuery<User> q = entityManager.createQuery("SELECT x FROM User x WHERE username = :usernameParam", User.class);
+
+            TypedQuery<User> q = entityManager.createQuery("SELECT x FROM User x WHERE username = :usernameParam",
+                    User.class);
             User user = getSingleResult(q.setParameter("usernameParam", username));
 
             if (user != null) {
-                
+
                 if (user.password.equals(password)) {
 
                     return true;
                 }
-                
+
             }
 
         }
-        
+
         return false;
- 
+
+    }
+    public User getUserByName(String name) {
+        EntityManager entityManager = entityManagerProvider.get();
+        List<User> q = entityManager.createQuery("SELECT x FROM User x WHERE username = :nameparam",
+                User.class)
+                .setParameter("nameparam", name)
+                .getResultList();
+                User user = q.get(0);
+        // User user = getSingleResult(q.setParameter("usernameParam", name));
+        // UserDto userDto = new UserDto();
+        // userDto.setUsername(user.getUsername());
+        // userDto.setPassword(user.getPassword());
+        // userDto.setFullname(user.getFullname());
+        // userDto.setEmail(user.getEmail());
+        // userDto.setPhone(user.getPhone());
+        return user;
     }
 
     /**

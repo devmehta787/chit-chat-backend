@@ -127,7 +127,7 @@ public class ArticleDao {
         }
         String title  = sanitizer.sanitize(articleDto.title);
         String content  = sanitizer.sanitize(articleDto.content);
-        Article article = new Article(user, title, content);
+        Article article = new Article();
         entityManager.persist(article);
         
         return true;

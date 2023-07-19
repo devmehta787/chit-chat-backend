@@ -48,11 +48,11 @@ public class Article {
     
     public Article() {}
     
-    public Article(User author, String title, String content) {
-        this.authorIds = Lists.newArrayList(author.id);
-        this.title = title;
-        this.content = content;
-        this.postedAt = new Date();
-    }
+    // public Article(User author, String title, String content) {
+    //     this.authorIds = Lists.newArrayList(author.id);
+    //     this.title = title;
+    //     this.content = content;
+    //     this.postedAt = new Date();
+    // }
  
 }

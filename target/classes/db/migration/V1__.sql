@@ -20,6 +20,8 @@ create table "user" (
     username varchar(255),
     primary key (id)
 );
+
+
     
 alter table Article_authorIds 
 add constraint FK_f9ivk719aqb0rqd8my08loev7 

@@ -23,12 +23,12 @@ import com.google.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import models.Article;
+// import models.Article;
 import models.User;
 
 import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
-import javax.persistence.FlushModeType;
+// import javax.persistence.FlushModeType;
 
 public class SetupDao {
     
@@ -46,23 +46,24 @@ public class SetupDao {
         if (users.size() == 0) {
 
             // Create a new user and save it
-            User bob = new User("bob@gmail.com", "secret", "Bob");
+            User bob = new User("bob123", "secret", "Bob", "bob@gmail.com", "12345");
+            // User bob=new User();
             entityManager.persist(bob);
             
             // Create a new post
-            Article bobPost3 = new Article(bob, "My third post", lipsum);
-            entityManager.persist(bobPost3);
+            // Article bobPost3 = new Article(bob, "My third post", lipsum);
+            // entityManager.persist(bobPost3);
 
             // Create a new post
-            Article bobPost2 = new Article(bob, "My second post", lipsum);
-            entityManager.persist(bobPost2);
+            // Article bobPost2 = new Article(bob, "My second post", lipsum);
+            // entityManager.persist(bobPost2);
             
             // Create a new post
-            Article bobPost1 = new Article(bob, post1Title, post1Content);
-            entityManager.persist(bobPost1);
+            // Article bobPost1 = new Article(bob, post1Title, post1Content);
+            // entityManager.persist(bobPost1);
             
-            entityManager.setFlushMode(FlushModeType.COMMIT);
-            entityManager.flush();
+            // entityManager.setFlushMode(FlushModeType.COMMIT);
+            // entityManager.flush();
         }
 
     }
@@ -87,5 +88,4 @@ public class SetupDao {
             + "</ul>" 
             + "<p>We are always happy to see you on our mailing list! "
             + "Check out <a href=\"https://www.ninjaframework.org\">our website for more</a>.</p>";
-
 }

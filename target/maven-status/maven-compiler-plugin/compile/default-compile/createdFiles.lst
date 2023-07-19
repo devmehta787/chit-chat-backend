@@ -3,7 +3,9 @@ etc\LoggedInUserExtractor.class
 models\Article.class
 conf\Filters.class
 models\User.class
+controllers\UserController.class
 dao\UserDao.class
+models\UserDto.class
 controllers\ApiController.class
 controllers\ApplicationController.class
 conf\Routes.class

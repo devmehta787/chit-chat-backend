@@ -43,6 +43,7 @@ import controllers.ApiController;
 import controllers.ApplicationController;
 import controllers.ArticleController;
 import controllers.LoginLogoutController;
+import controllers.UserController;
 
 public class Routes implements ApplicationRoutes {
     
@@ -67,12 +68,12 @@ public class Routes implements ApplicationRoutes {
         }
         
 //        router.GET().route("/login").with(LoginLogoutController::login);
-        ///////////////////////////////////////////////////////////////////////
+//         ///////////////////////////////////////////////////////////////////////
         // Login / Logout
         ///////////////////////////////////////////////////////////////////////
-        router.GET().route("/login").with(LoginLogoutController::login);
-        router.POST().route("/login").with(LoginLogoutController::loginPost);
-        router.GET().route("/logout").with(LoginLogoutController::logout);
+        // router.GET().route("/login").with(LoginLogoutController::login);
+        // router.POST().route("/login").with(LoginLogoutController::loginPost);
+        // router.GET().route("/logout").with(LoginLogoutController::logout);
         
         ///////////////////////////////////////////////////////////////////////
         // Create new article
@@ -103,7 +104,49 @@ public class Routes implements ApplicationRoutes {
         ///////////////////////////////////////////////////////////////////////
         // Index / Catchall shows index page
         ///////////////////////////////////////////////////////////////////////
-//        router.GET().route("/.*").with(ApplicationController::index);
+        //        router.GET().route("/.*").with(ApplicationController::index);
+
+
+        // 1. **Account Creation/Login Functionality:**
+        //     - POST /API/register: Create a new user account.
+        //     - POST /API/login: Authenticate and log in as a user.
+
+        router.POST().route("/user/new").with(UserController::addUser);
+        router.POST().route("/user/login").with(UserController::loginUser);
+
+        router.GET().route("/user/getByName/{name}").with(UserController::getUserById);
+        // router.POST().route("/user/login").with(UserController::loginUser);
+
+
+
+        // 2. **Friend Management:**
+        //     - POST /API/friends: Add a friend using their contact number.
+        //     - GET /API/friends: Retrieve the list of a user's friends.
+        //     - DELETE /API/friends/(friend Id): Remove a friend from the user's friend list.
+        
+
+
+
+        // 3. **Chat Functionality:**
+        //     - POST /API/chats/(friend Id): Start a new chat with a friend.
+        //     - GET /API/chats: Retrieve a list of ongoing chats for the logged-in user.
+        //     - GET /API/chats/(chat Id): Retrieve the chat history for a specific chat.
+        //     - POST /API/chats/(chat Id)/message: Send a message in a chat.
+        //     - GET /API/chats/(chat Id)/message: Retrieve the messages for a specific chat.
+        //     - DELETE /API/chats/(chat Id): End a chat with a friend.
+        
+
+
+
+        // 4. **Data Retrieval:**
+        //     - GET /API/user/(user Id): Retrieve the user's profile information.
+        //     - GET /API/user/(user Id)/chats: Retrieve the list of chats for a specific user.
+        //     - GET /API/user/(user Id)/friends: Retrieve the user's friend list.
+
+
+
+
+
     }
 
 }
