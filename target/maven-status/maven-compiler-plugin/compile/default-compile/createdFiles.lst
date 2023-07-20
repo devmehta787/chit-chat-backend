@@ -1,4 +1,5 @@
 conf\StartupActions.class
+controllers\FriendController.class
 etc\LoggedInUserExtractor.class
 models\Article.class
 conf\Filters.class
@@ -11,10 +12,13 @@ controllers\ApplicationController.class
 conf\Routes.class
 models\ArticleDto.class
 dao\ArticleDao.class
+dao\FriendDao.class
+models\Friend.class
 dao\SetupDao.class
 models\ArticlesDto.class
 controllers\ArticleController.class
 etc\LoggedInUser.class
+models\FriendDto.class
 filters\LoggerFilter.class
 conf\Module.class
 controllers\LoginLogoutController.class

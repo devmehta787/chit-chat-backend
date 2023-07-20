@@ -15,21 +15,21 @@ public class Friend {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
+    public BigInteger id;
 
-    @Column(name="user_id")
+    @Column(name="userId")
     public Long userId;
 
-    @Column(name="friend_id")
+    @Column(name="friendId")
     public Long friendId;
 
-    public Long getId() {
-        return id;
-    }
+    // public BigInteger getId() {
+    //     return id;
+    // }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // public void setId(BigInteger id) {
+    //     this.id = id;
+    // }
 
     public Long getUserId() {
         return userId;
@@ -51,7 +51,7 @@ public class Friend {
         
     }
     public Friend(Long userId, Long friendId) {
-        super();
+        // super();
         this.userId = userId;
         this.friendId = friendId;
     }

@@ -17,12 +17,17 @@
 package dao;
 
 
+import java.math.BigInteger;
 import java.util.List;
 
+import com.fasterxml.jackson.module.afterburner.asm.Type;
 import com.google.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.apache.commons.lang3.reflect.Typed;
+
+import models.Friend;
 // import models.Article;
 import models.User;
 
@@ -41,6 +46,7 @@ public class SetupDao {
         EntityManager entityManager = entityManagerProvider.get();
         
         TypedQuery<User> q = entityManager.createQuery("SELECT x FROM User x", User.class);
+        TypedQuery<Friend> q1 = entityManager.createQuery("SELECT x FROM Friend x", Friend.class);
         List<User> users = q.getResultList();        
         
         if (users.size() == 0) {
@@ -49,6 +55,11 @@ public class SetupDao {
             User bob = new User("bob123", "secret", "Bob", "bob@gmail.com", "12345");
             // User bob=new User();
             entityManager.persist(bob);
+
+            // BigInteger bigInteger1 = BigInteger.valueOf(1);
+            // BigInteger bigInteger2 = BigInteger.valueOf(2);
+            // Friend friend1 = new Friend(1, 2);
+            // entityManager.persist(friend1);
             
             // Create a new post
             // Article bobPost3 = new Article(bob, "My third post", lipsum);

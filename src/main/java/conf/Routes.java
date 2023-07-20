@@ -42,6 +42,7 @@ import com.google.inject.Inject;
 import controllers.ApiController;
 import controllers.ApplicationController;
 import controllers.ArticleController;
+import controllers.FriendController;
 import controllers.LoginLogoutController;
 import controllers.UserController;
 
@@ -115,14 +116,16 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/user/login").with(UserController::loginUser);
 
         router.GET().route("/user/getByName/{name}").with(UserController::getUserById);
-        // router.POST().route("/user/login").with(UserController::loginUser);
-
 
 
         // 2. **Friend Management:**
         //     - POST /API/friends: Add a friend using their contact number.
         //     - GET /API/friends: Retrieve the list of a user's friends.
         //     - DELETE /API/friends/(friend Id): Remove a friend from the user's friend list.
+        
+        router.POST().route("/user/addFriend").with(FriendController::addFriend);
+        router.GET().route("/user/getFriends/{userId}").with(FriendController::getFriends);
+        // router.DELETE().route("/user/deleteFriend/{friendId}").with(FriendController::deleteFriend);
         
 
 
