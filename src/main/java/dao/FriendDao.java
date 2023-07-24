@@ -31,15 +31,51 @@ public class FriendDao {
 
         return friendDto;
     }
+
+    @Transactional
     public Friend getFriendById(BigInteger userId) {
         EntityManager entityManager = entityManagerProvider.get();
-        List<Friend> f = entityManager.createQuery("SELECT x FROM Friend x WHERE userId= :idparam",
-            Friend.class)
+        List<Friend> f = entityManager.createQuery("SELECT x FROM Friend x WHERE x.userId= :idparam",
+                Friend.class)
                 .setParameter("idparam", userId)
                 .getResultList();
-                Friend friend = f.get(0);
-                
+        if(f.size()==0){
+            return null;
+        }
+        Friend friend = f.get(0);
+
         return friend;
     }
+    
+    public boolean delete(int id) {
+        return deleteFriend(id);
+    }
+
+    @Transactional
+    public boolean deleteFriend(int friend_id) {
+        try {
+            EntityManager entityManager = entityManagerProvider.get();
+            Friend friend = entityManager.find(Friend.class, friend_id);
+            entityManager.remove(friend);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        // EntityManager entityManager = entityManagerProvider.get();
+        // Friend friend = entityManager.find(Friend.class, id);
+        // if (friend != null) {
+        //     entityManager.remove(friend);
+        //     return true;
+        // }
+        // return false;
+    }
+
+    // public boolean delete(int friendId) {
+    //     EntityManager entityManager = entityManagerProvider.get();
+    //     ("DELETE x FROM Friend x WHERE friendId= :idparam");
+        
+    // }
+
     
 }

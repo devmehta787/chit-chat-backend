@@ -42,6 +42,7 @@ import com.google.inject.Inject;
 import controllers.ApiController;
 import controllers.ApplicationController;
 import controllers.ArticleController;
+import controllers.ChatController;
 import controllers.FriendController;
 import controllers.LoginLogoutController;
 import controllers.UserController;
@@ -125,7 +126,7 @@ public class Routes implements ApplicationRoutes {
         
         router.POST().route("/user/addFriend").with(FriendController::addFriend);
         router.GET().route("/user/getFriends/{userId}").with(FriendController::getFriends);
-        // router.DELETE().route("/user/deleteFriend/{friendId}").with(FriendController::deleteFriend);
+        router.DELETE().route("/user/deleteFriend/{friendId}").with(FriendController::deleteFriend);
         
 
 
@@ -137,6 +138,16 @@ public class Routes implements ApplicationRoutes {
         //     - POST /API/chats/(chat Id)/message: Send a message in a chat.
         //     - GET /API/chats/(chat Id)/message: Retrieve the messages for a specific chat.
         //     - DELETE /API/chats/(chat Id): End a chat with a friend.
+
+        router.POST().route("/user/startChat").with(ChatController::startChat);
+
+        router.GET().route("/user/getChats/{userId}").with(ChatController::getChats);
+        router.GET().route("/user/getChat/{chatId}").with(ChatController::getChat);
+
+        router.POST().route("/user/sendMessage").with(ChatController::sendMessage);
+        
+        
+        router.DELETE().route("/user/endChat/{chatId}").with(ChatController::endChat);
         
 
 
@@ -145,11 +156,6 @@ public class Routes implements ApplicationRoutes {
         //     - GET /API/user/(user Id): Retrieve the user's profile information.
         //     - GET /API/user/(user Id)/chats: Retrieve the list of chats for a specific user.
         //     - GET /API/user/(user Id)/friends: Retrieve the user's friend list.
-
-
-
-
-
     }
 
 }

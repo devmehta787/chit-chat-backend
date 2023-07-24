@@ -29,6 +29,16 @@ CREATE TABLE friend (
     FOREIGN KEY (userId) REFERENCES "user"(id),
     FOREIGN KEY (friendId) REFERENCES "user"(id)
 );
+
+CREATE TABLE MessageTable(
+	message_id INT PRIMARY KEY,
+	sender_id INT,
+	receiver_id INT,
+    message_content VARCHAR(5000),
+	time_stamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+	FOREIGN KEY (sender_id) REFERENCES "user"(id),
+	FOREIGN KEY (receiver_id) REFERENCES "user"(id)
+);
     
 alter table Article_authorIds 
 add constraint FK_f9ivk719aqb0rqd8my08loev7 

@@ -17,10 +17,10 @@ public class Friend {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public BigInteger id;
 
-    @Column(name="userId")
+    @Column(name="userid")
     public Long userId;
 
-    @Column(name="friendId")
+    @Column(name="friendid")
     public Long friendId;
 
     // public BigInteger getId() {
@@ -51,7 +51,7 @@ public class Friend {
         
     }
     public Friend(Long userId, Long friendId) {
-        // super();
+        super();
         this.userId = userId;
         this.friendId = friendId;
     }

@@ -42,6 +42,9 @@ public class UserController {
         userDao.addNewUser(userDto);
         // context.getFlashScope().success("New user Addded");
         return Results.ok().json().render("New User Added");
+
+
+        // add condition for already existing user
     }
 
     public Result loginUser(UserDto userDto) {

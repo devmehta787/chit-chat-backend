@@ -28,7 +28,23 @@ public class FriendController {
 
     public Result getFriends(@PathParam("userId") BigInteger userId) {
         // log.info(name);
-        Friend friend = friendDao.getFriendById(userId);
-        return Results.ok().json().render(friend);
+        try{
+            Friend friend = friendDao.getFriendById(userId);
+            return Results.ok().json().render(friend);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+
+            return Results.ok().json().render("Not Found");
+        }
+    }
+
+    public Result deleteFriend(@PathParam("friend_id") int friend_id){
+        // BigInteger big=BigInteger.valueOf(id);
+	boolean status = friendDao.delete(friend_id);
+    if (status == true) {
+        return Results.ok().json().render("Deleted");
+    }
+    return Results.ok().json().render("Not Found");
     }
 }
