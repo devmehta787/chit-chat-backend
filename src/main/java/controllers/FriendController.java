@@ -39,7 +39,7 @@ public class FriendController {
         }
     }
 
-    public Result deleteFriend(@PathParam("friend_id") int friend_id){
+    public Result deleteFriend(@PathParam("friendId") Long friend_id){
         // BigInteger big=BigInteger.valueOf(id);
 	boolean status = friendDao.delete(friend_id);
     if (status == true) {

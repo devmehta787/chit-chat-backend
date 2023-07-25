@@ -34,28 +34,34 @@ public class FriendDao {
 
     @Transactional
     public Friend getFriendById(BigInteger userId) {
-        EntityManager entityManager = entityManagerProvider.get();
-        List<Friend> f = entityManager.createQuery("SELECT x FROM Friend x WHERE x.userId= :idparam",
-                Friend.class)
-                .setParameter("idparam", userId)
-                .getResultList();
-        if(f.size()==0){
-            return null;
-        }
-        Friend friend = f.get(0);
+        BigInteger bI=BigInteger.valueOf(1);
+        // Long id=Long.valueOf(1);
+        Friend friend = new Friend(userId, bI);
+        
+        // EntityManager entityManager = entityManagerProvider.get();
+        // List<Friend> f = entityManager.createQuery("SELECT x FROM Friend x WHERE x.userId= :idparam",
+        //         Friend.class)
+        //         .setParameter("idparam", userId)
+        //         .getResultList();
+        // if (f.size() == 0) {
+            
+        //     return null;
+        // }
+        // Friend friend = f.get(0);
 
         return friend;
     }
     
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         return deleteFriend(id);
     }
 
-    @Transactional
-    public boolean deleteFriend(int friend_id) {
+    // @Transactional
+    // @Transactional(rollbackFor=MyException.class, noRollbackFor=MyException2.class)
+    public boolean deleteFriend(Long friend_id) {
         try {
             EntityManager entityManager = entityManagerProvider.get();
-            Friend friend = entityManager.find(Friend.class, friend_id);
+            Friend friend = entityManager.find(Friend.class, 2L);
             entityManager.remove(friend);
             return true;
         } catch (Exception e) {

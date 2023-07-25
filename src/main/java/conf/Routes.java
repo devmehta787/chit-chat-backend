@@ -68,7 +68,7 @@ public class Routes implements ApplicationRoutes {
         if (!ninjaProperties.isProd()) {
                 router.GET().route("/setup").with(ApplicationController::setup);
         }
-        
+        // System.out.println(org.hibernate.Version.getVersionString());
 //        router.GET().route("/login").with(LoginLogoutController::login);
 //         ///////////////////////////////////////////////////////////////////////
         // Login / Logout
@@ -127,6 +127,7 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/user/addFriend").with(FriendController::addFriend);
         router.GET().route("/user/getFriends/{userId}").with(FriendController::getFriends);
         router.DELETE().route("/user/deleteFriend/{friendId}").with(FriendController::deleteFriend);
+
         
 
 
