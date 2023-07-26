@@ -23,17 +23,15 @@ public class ChatController {
     }
 
     public Result getChats(@PathParam("sender_id") Long sender_id) {
-        // try {
-        //     ChatDto chat = chatDao.getChatsBySenderId(sender_id);
-        //     return Results.ok().json().render(chat);
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-
-        //     return Results.ok().json().render("Not Found");
-        // }
         log.info(sender_id);
-        // Long sender_id1 = Long.parseLong(sender_id);
-        Chat c = chatDao.getChatsBySenderId(sender_id);
+        List<Chat> c = chatDao.getChatsBySenderId(sender_id);
+        return Results.ok().json().render(c);
+    }
+
+    public Result getChat(@PathParam("sender_id") Long sender_id, @PathParam("receiver_id") Long receiver_id) {
+        log.info(sender_id);
+        log.info(receiver_id);
+        List<Chat> c = chatDao.getChatBySenderIdAndSenderId(sender_id, receiver_id);
         return Results.ok().json().render(c);
     }
 

@@ -4,15 +4,27 @@ import java.sql.Time;
 import java.util.Date;
 
 import javax.annotation.processing.Generated;
+import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "chat", schema = "public")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "messagetable", schema = "public")
+@NamedQueries({
+        @NamedQuery(name = "messagetable.getChatData", query = "SELECT x From Chat x WHERE x.sender_id = :paramId"),
+        @NamedQuery(name = "messagetable.getChatDataBySenderIdAndReceiverId", query = "SELECT x From Chat x WHERE (x.sender_id = :paramId AND x.receiver_id = :paramId2)UNION (x.sender_id = :paramId2 AND x.receiver_id = :paramId) sort by message_id)")
+})
+
+
 public class Chat {
     @Id
     @Column(name = "message_id")

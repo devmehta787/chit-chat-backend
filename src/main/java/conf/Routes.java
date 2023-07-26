@@ -143,8 +143,12 @@ public class Routes implements ApplicationRoutes {
 
         router.POST().route("/user/startChat").with(ChatController::startChat);
 
+        // gets all the chats of a user
         router.GET().route("/user/getChats/{sender_id}").with(ChatController::getChats);
-        // router.GET().route("/user/getChat/{chatId}").with(ChatController::getChat);
+        
+        // gets all chat message between 2 users
+        router.GET().route("/user/getChat/{sender_id}/{receiver_id}").with(ChatController::getChat);
+
 
         // router.POST().route("/user/sendMessage").with(ChatController::sendMessage);
         

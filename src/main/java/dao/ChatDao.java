@@ -31,17 +31,31 @@ public class ChatDao {
     }
     
     @Transactional
-    public Chat getChatsBySenderId(Long senderId) {
+    public List<Chat> getChatsBySenderId(Long senderId) {
         EntityManager entityManager = entityManagerProvider.get();
-        List<Chat> c = entityManager.createQuery(" SELECT m FROM chat m WHERE m.sender_id= :idparam",
+        List<Chat> c = entityManager.createNamedQuery("messagetable.getChatData",
                 Chat.class)
-                .setParameter("idparam", senderId)
+                .setParameter("paramId", senderId)
                 .getResultList();
-        if(c.size()==0){
+        if (c.size() == 0) {
             return null;
         }
-        Chat chat = c.get(0);
+        // Chat chat = c.get(0);
 
-        return chat;
+        return c;
+    }
+    
+    @Transactional
+    public List<Chat> getChatBySenderIdAndSenderId(Long senderId, Long receiverId) {
+        EntityManager entityManager = entityManagerProvider.get();
+        List<Chat> c = entityManager.createNamedQuery("messagetable.getChatDataBySenderIdAndReceiverId",
+                Chat.class)
+                .setParameter("paramId", senderId)
+                .setParameter("paramId2", receiverId)
+                .getResultList();
+        if (c.size() == 0) {
+            return null;
+        }
+        return c;
     }
 }
