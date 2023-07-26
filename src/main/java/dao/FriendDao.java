@@ -33,7 +33,7 @@ public class FriendDao {
     }
 
     @Transactional
-    public Friend getFriendById(BigInteger userId) {
+    public Friend getFriendById(Long userId) {
         EntityManager entityManager = entityManagerProvider.get();
         List<Friend> f = entityManager.createQuery("SELECT x FROM Friend x WHERE x.userId= :idparam",
                 Friend.class)
@@ -47,12 +47,12 @@ public class FriendDao {
         return friend;
     }
     
-    public boolean delete(int id) {
+    public boolean delete(Long id) {
         return deleteFriend(id);
     }
 
     @Transactional
-    public boolean deleteFriend(int friend_id) {
+    public boolean deleteFriend(Long friend_id) {
         try {
             EntityManager entityManager = entityManagerProvider.get();
             Friend friend = entityManager.find(Friend.class, friend_id);
@@ -76,6 +76,4 @@ public class FriendDao {
     //     ("DELETE x FROM Friend x WHERE friendId= :idparam");
         
     // }
-
-    
 }

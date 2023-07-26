@@ -26,7 +26,7 @@ public class FriendController {
         return Results.ok().json().render("New Friend Added");
     }
 
-    public Result getFriends(@PathParam("userId") BigInteger userId) {
+    public Result getFriends(@PathParam("userId") Long userId) {
         // log.info(name);
         try{
             Friend friend = friendDao.getFriendById(userId);
@@ -39,7 +39,7 @@ public class FriendController {
         }
     }
 
-    public Result deleteFriend(@PathParam("friend_id") int friend_id){
+    public Result deleteFriend(@PathParam("friend_id") Long friend_id){
         // BigInteger big=BigInteger.valueOf(id);
 	boolean status = friendDao.delete(friend_id);
     if (status == true) {

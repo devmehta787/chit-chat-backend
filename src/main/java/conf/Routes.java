@@ -32,19 +32,19 @@
 
 package conf;
 
-import ninja.AssetsController;
+// import ninja.AssetsController;
 import ninja.Router;
 import ninja.application.ApplicationRoutes;
 import ninja.utils.NinjaProperties;
 
 import com.google.inject.Inject;
 
-import controllers.ApiController;
+// import controllers.ApiController;
 import controllers.ApplicationController;
-import controllers.ArticleController;
-import controllers.ChatController;
+// import controllers.ArticleController;
+// import controllers.ChatController;
 import controllers.FriendController;
-import controllers.LoginLogoutController;
+// import controllers.LoginLogoutController;
 import controllers.UserController;
 
 public class Routes implements ApplicationRoutes {
@@ -139,15 +139,15 @@ public class Routes implements ApplicationRoutes {
         //     - GET /API/chats/(chat Id)/message: Retrieve the messages for a specific chat.
         //     - DELETE /API/chats/(chat Id): End a chat with a friend.
 
-        router.POST().route("/user/startChat").with(ChatController::startChat);
+        // router.POST().route("/user/startChat").with(ChatController::startChat);
 
-        router.GET().route("/user/getChats/{userId}").with(ChatController::getChats);
-        router.GET().route("/user/getChat/{chatId}").with(ChatController::getChat);
+        // router.GET().route("/user/getChats/{userId}").with(ChatController::getChats);
+        // router.GET().route("/user/getChat/{chatId}").with(ChatController::getChat);
 
-        router.POST().route("/user/sendMessage").with(ChatController::sendMessage);
+        // router.POST().route("/user/sendMessage").with(ChatController::sendMessage);
         
         
-        router.DELETE().route("/user/endChat/{chatId}").with(ChatController::endChat);
+        // router.DELETE().route("/user/endChat/{chatId}").with(ChatController::endChat);
         
 
 

@@ -15,7 +15,7 @@ public class Friend {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public BigInteger id;
+    public Long id;
 
     @Column(name="userid")
     public Long userId;
