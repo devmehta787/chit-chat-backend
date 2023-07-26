@@ -7,6 +7,8 @@ import com.google.inject.persist.Transactional;
 import models.Chat;
 import models.ChatDto;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 
@@ -26,5 +28,20 @@ public class ChatDao {
         entityManager.persist(chat);
 
         return chatDto;
-    }  
+    }
+    
+    @Transactional
+    public Chat getChatsBySenderId(Long senderId) {
+        EntityManager entityManager = entityManagerProvider.get();
+        List<Chat> c = entityManager.createQuery(" SELECT m FROM chat m WHERE m.sender_id= :idparam",
+                Chat.class)
+                .setParameter("idparam", senderId)
+                .getResultList();
+        if(c.size()==0){
+            return null;
+        }
+        Chat chat = c.get(0);
+
+        return chat;
+    }
 }

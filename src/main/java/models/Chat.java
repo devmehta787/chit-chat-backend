@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.Time;
+import java.util.Date;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.Column;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "messagetable", schema = "public")
+@Table(name = "chat", schema = "public")
 public class Chat {
     @Id
     @Column(name = "message_id")
@@ -75,6 +76,8 @@ public class Chat {
         this.sender_id = sender_id;
         this.receiver_id = receiver_id;
         this.message_content = message_content;
-        this.time_stamp = new Time(System.currentTimeMillis());
+        long timeInMillis = System.currentTimeMillis();
+        Date date = new Date(timeInMillis);
+        this.time_stamp = new Time(date.getTime());
     }
 }
