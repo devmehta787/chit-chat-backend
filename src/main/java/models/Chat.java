@@ -28,7 +28,7 @@ public class Chat {
     @Column(name="message_content")
     public String message_content;
 
-    @Column(name="time_stamp")
+    @Column(name="timestamp")
     public Time time_stamp;
 
     

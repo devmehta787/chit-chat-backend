@@ -4,17 +4,14 @@ import javax.persistence.EntityManager;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import com.google.inject.persist.Transactional;
 
 import models.Chat;
 import models.ChatDto;
-import ninja.jpa.UnitOfWork;
 
 public class ChatDao {
     @Inject
     Provider<EntityManager> entityManagerProvider;
 
-    @Transactional
     public boolean startNewChat(ChatDto chatDto) {
         EntityManager entityManager = entityManagerProvider.get();
         Chat newchat = new Chat();
@@ -27,7 +24,6 @@ public class ChatDao {
         return true;
     }
 
-    
     public Chat getChatByUserId(Long user_id) {
         EntityManager entityManager = entityManagerProvider.get();
         Chat chat = entityManager.find(Chat.class, user_id);
@@ -40,7 +36,7 @@ public class ChatDao {
         return chat;
     }
 
-    @UnitOfWork
+
     public boolean sendMessage(ChatDto chatDto) {
         try {
             EntityManager entityManager = entityManagerProvider.get();

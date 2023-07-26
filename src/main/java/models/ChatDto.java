@@ -7,12 +7,6 @@ public class ChatDto {
     private Long sender_id;
     private Long receiver_id;
     private String message_content;
-    public String getMessage_content() {
-        return message_content;
-    }
-    public void setMessage_content(String message_content) {
-        this.message_content = message_content;
-    }
     private Time time_stamp;
     public Long getMessage_id() {
         return message_id;
@@ -32,7 +26,12 @@ public class ChatDto {
     public void setReceiver_id(Long receiver_id) {
         this.receiver_id = receiver_id;
     }
-    
+    public String getMessage() {
+        return message_content;
+    }
+    public void setMessage(String message_content) {
+        this.message_content = message_content;
+    }
     public Time getTimestamp() {
         return time_stamp;
     }
