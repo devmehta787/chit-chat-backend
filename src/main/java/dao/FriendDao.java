@@ -51,7 +51,7 @@ public class FriendDao {
         return deleteFriend(id);
     }
 
-    @Transactional
+    // @Transactional
     public boolean deleteFriend(Long friend_id) {
         try {
             EntityManager entityManager = entityManagerProvider.get();

@@ -41,6 +41,7 @@ import com.google.inject.Inject;
 
 // import controllers.ApiController;
 import controllers.ApplicationController;
+import controllers.ChatController;
 // import controllers.ArticleController;
 // import controllers.ChatController;
 import controllers.FriendController;
@@ -139,7 +140,8 @@ public class Routes implements ApplicationRoutes {
         //     - GET /API/chats/(chat Id)/message: Retrieve the messages for a specific chat.
         //     - DELETE /API/chats/(chat Id): End a chat with a friend.
 
-        // router.POST().route("/user/startChat").with(ChatController::startChat);
+
+        router.POST().route("/user/startChat").with(ChatController::startChat);
 
         // router.GET().route("/user/getChats/{userId}").with(ChatController::getChats);
         // router.GET().route("/user/getChat/{chatId}").with(ChatController::getChat);
