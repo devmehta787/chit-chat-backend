@@ -35,4 +35,9 @@ public class ChatController {
         return Results.ok().json().render(c);
     }
 
+    public Result deleteChat(@PathParam("chatId") Long message_id) {
+        chatDao.delete(message_id);
+        return Results.ok().json().render("Chat Ended");
+    }
+
 }

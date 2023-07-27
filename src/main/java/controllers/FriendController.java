@@ -34,7 +34,6 @@ public class FriendController {
         }
         catch(Exception e){
             e.printStackTrace();
-
             return Results.ok().json().render("Not Found");
         }
     }

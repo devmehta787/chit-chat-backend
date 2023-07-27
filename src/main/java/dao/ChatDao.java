@@ -58,4 +58,18 @@ public class ChatDao {
         }
         return c;
     }
+
+    @Transactional
+    public boolean delete(Long id) {
+        try{
+            EntityManager entityManager = entityManagerProvider.get();
+            Chat chat = entityManager.find(Chat.class, id);
+            entityManager.remove(chat);
+            return true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

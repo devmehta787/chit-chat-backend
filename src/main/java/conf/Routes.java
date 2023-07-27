@@ -153,7 +153,7 @@ public class Routes implements ApplicationRoutes {
         // router.POST().route("/user/sendMessage").with(ChatController::sendMessage);
         
         
-        // router.DELETE().route("/user/endChat/{chatId}").with(ChatController::endChat);
+        router.DELETE().route("/user/deletechat/{chatId}").with(ChatController::deleteChat);
         
 
 

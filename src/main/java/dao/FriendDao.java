@@ -35,7 +35,7 @@ public class FriendDao {
     @Transactional
     public Friend getFriendById(Long userId) {
         EntityManager entityManager = entityManagerProvider.get();
-        List<Friend> f = entityManager.createQuery("SELECT x FROM Friend x WHERE x.userId= :idparam",
+        List<Friend> f = entityManager.createNamedQuery("friend.getFriendData",
                 Friend.class)
                 .setParameter("idparam", userId)
                 .getResultList();

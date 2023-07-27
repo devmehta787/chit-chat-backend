@@ -2,15 +2,22 @@ package models;
 
 import java.math.BigInteger;
 
+import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="friend",schema="public")
+@Table(name = "friend", schema = "public")
+@NamedQueries({
+    @NamedQuery(name = "friend.getFriendData", query = "SELECT f FROM Friend f WHERE f.userId = :idparam")
+})
+
 public class Friend {
     @Id
     @Column(name="id")
