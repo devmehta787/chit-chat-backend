@@ -3,6 +3,7 @@ package controllers;
 import com.google.inject.Inject;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import javax.websocket.server.PathParam;
 
@@ -29,8 +30,8 @@ public class FriendController {
     public Result getFriends(@PathParam("userId") Long userId) {
         // log.info(name);
         try{
-            Friend friend = friendDao.getFriendById(userId);
-            return Results.ok().json().render(friend);
+            List<Friend> f = friendDao.getFriendById(userId);
+            return Results.ok().json().render(f);
         }
         catch(Exception e){
             e.printStackTrace();

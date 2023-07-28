@@ -8,14 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "friend", schema = "public")
 @NamedQueries({
-    @NamedQuery(name = "friend.getFriendData", query = "SELECT f FROM Friend f WHERE f.userId = :idparam")
+    @NamedQuery(name = "friend.getFriendData", query = "SELECT f FROM Friend f WHERE f.userId = :paramId")
 })
 
 public class Friend {

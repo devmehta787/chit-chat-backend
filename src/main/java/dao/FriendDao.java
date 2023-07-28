@@ -33,18 +33,19 @@ public class FriendDao {
     }
 
     @Transactional
-    public Friend getFriendById(Long userId) {
+    public List<Friend> getFriendById(Long userId) {
         EntityManager entityManager = entityManagerProvider.get();
         List<Friend> f = entityManager.createNamedQuery("friend.getFriendData",
                 Friend.class)
-                .setParameter("idparam", userId)
+                .setParameter("paramId", userId)
                 .getResultList();
-        if(f.size()==0){
-            return null;
-        }
-        Friend friend = f.get(0);
+        // if(f.size()==0){
+        //     return null;
+        // }
+        // Friend friend = f.get(0);
 
-        return friend;
+        // return friend;
+        return f;
     }
     
     public boolean delete(Long id) {
