@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Table(name = "messagetable", schema = "public")
 @NamedQueries({
         @NamedQuery(name = "messagetable.getChatData", query = "SELECT x From Chat x WHERE x.sender_id = :paramId"),
-        @NamedQuery(name = "messagetable.getChatDataBySenderIdAndReceiverId", query = "SELECT x From Chat x WHERE (x.sender_id = :paramId AND x.receiver_id = :paramId2)UNION (x.sender_id = :paramId2 AND x.receiver_id = :paramId) sort by message_id)")
+        @NamedQuery(name = "messagetable.getChatDataBySenderIdAndReceiverId", query = "SELECT x From Chat x WHERE (x.sender_id = :paramId AND x.receiver_id = :paramId2) UNION (x.sender_id = :paramId2 AND x.receiver_id = :paramId) sort by message_id)")
 })
 
 
@@ -40,9 +40,9 @@ public class Chat {
     @Column(name = "time_stamp")
     public Time time_stamp;
 
-    // public Long getMessage_id() {
-    //     return message_id;
-    // }
+    public Long getMessage_id() {
+        return message_id;
+    }
     // public void setMessage_id(Long message_id) {
     //     this.message_id = message_id;
     // }

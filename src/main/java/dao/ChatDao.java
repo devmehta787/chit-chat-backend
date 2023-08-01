@@ -48,15 +48,24 @@ public class ChatDao {
     @Transactional
     public List<Chat> getChatBySenderIdAndSenderId(Long senderId, Long receiverId) {
         EntityManager entityManager = entityManagerProvider.get();
-        List<Chat> c = entityManager.createNamedQuery("messagetable.getChatDataBySenderIdAndReceiverId",
+        List<Chat> c1 = entityManager.createNamedQuery("messagetable.getChatDataBySenderIdAndReceiverId",
                 Chat.class)
                 .setParameter("paramId", senderId)
                 .setParameter("paramId2", receiverId)
                 .getResultList();
-        if (c.size() == 0) {
+        List<Chat> c2 = entityManager.createNamedQuery("messagetable.getChatDataBySenderIdAndReceiverId",
+                Chat.class)
+                .setParameter("paramId2", senderId)
+                .setParameter("paramId", receiverId)
+                .getResultList();
+        for (int i = 0; i < c2.size(); i++) {
+            c1.add(c2.get(i));
+        }
+        c1.sort((Chat c3, Chat c4) -> c3.getMessage_id().compareTo(c4.getMessage_id()));
+        if (c1.size() == 0) {
             return null;
         }
-        return c;
+        return c1;
     }
 
     @Transactional

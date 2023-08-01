@@ -18,26 +18,27 @@ public class ChatController {
     private static final Logger log = LogManager.getLogger(ChatController.class);
 
     public Result startChat(ChatDto chatDto) {
+        log.info(chatDto);
         chatDao.addNewChat(chatDto);
-        return Results.ok().json().render("New Chat Started");
+        return Results.ok().addHeader("Access-Control-Allow-Origin", "*").json().render("New Chat Started");
     }
 
     public Result getChats(@PathParam("sender_id") Long sender_id) {
         log.info(sender_id);
         List<Chat> c = chatDao.getChatsBySenderId(sender_id);
-        return Results.ok().json().render(c);
+        return Results.ok().addHeader("Access-Control-Allow-Origin", "*").json().render(c);
     }
 
     public Result getChat(@PathParam("sender_id") Long sender_id, @PathParam("receiver_id") Long receiver_id) {
-        log.info(sender_id);
-        log.info(receiver_id);
+        // log.info(sender_id);
+        // log.info(receiver_id);
         List<Chat> c = chatDao.getChatBySenderIdAndSenderId(sender_id, receiver_id);
-        return Results.ok().json().render(c);
+        return Results.ok().addHeader("Access-Control-Allow-Origin", "*").json().render(c);
     }
 
     public Result deleteChat(@PathParam("chatId") Long message_id) {
         chatDao.delete(message_id);
-        return Results.ok().json().render("Chat Ended");
+        return Results.ok().addHeader("Access-Control-Allow-Origin", "*").json().render("Chat Ended");
     }
 
 }

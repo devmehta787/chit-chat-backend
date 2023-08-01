@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "friend", schema = "public")
 @NamedQueries({
-    @NamedQuery(name = "friend.getFriendData", query = "SELECT f FROM Friend f WHERE f.userId = :paramId")
+    @NamedQuery(name = "friend.getFriendData", query = "SELECT f FROM Friend f WHERE f.userId = :paramId"),
 })
 
 public class Friend {
@@ -33,9 +33,9 @@ public class Friend {
     @Column(name="friendid")
     public Long friendId;
 
-    // public BigInteger getId() {
-    //     return id;
-    // }
+    public Long getId() {
+        return id;
+    }
 
     // public void setId(BigInteger id) {
     //     this.id = id;

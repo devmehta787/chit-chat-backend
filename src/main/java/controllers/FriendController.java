@@ -20,7 +20,7 @@ import ninja.Results;
 public class FriendController {
     @Inject
     FriendDao friendDao;
-    // private static final Logger log = LogManager.getLogger(FriendController.class);
+    private static final Logger log = LogManager.getLogger(FriendController.class);
     
     public Result addFriend(FriendDto friendDto) {
         friendDao.addNewFriend(friendDto);
@@ -28,23 +28,22 @@ public class FriendController {
     }
 
     public Result getFriends(@PathParam("userId") Long userId) {
-        // log.info(name);
-        try{
+        log.info(userId);
+        // try{
             List<Friend> f = friendDao.getFriendById(userId);
-            return Results.ok().json().render(f);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            return Results.ok().json().render("Not Found");
-        }
+            return Results.ok().addHeader("Access-Control-Allow-Origin", "*").json().render(f);
+        // } catch(Exception e){
+        //     e.printStackTrace();
+        //     return Results.ok().json().render("Not Found");
+        // }
     }
 
     public Result deleteFriend(@PathParam("friend_id") Long friend_id){
         // BigInteger big=BigInteger.valueOf(id);
-	boolean status = friendDao.delete(friend_id);
-    if (status == true) {
-        return Results.ok().json().render("Deleted");
-    }
-    return Results.ok().json().render("Not Found");
+	    boolean status = friendDao.delete(friend_id);
+        if (status == true) {
+            return Results.ok().json().render("Deleted");
+        }
+        return Results.ok().json().render("Not Found");
     }
 }
