@@ -20,7 +20,10 @@ public class ChatController {
     public Result startChat(ChatDto chatDto) {
         log.info(chatDto);
         chatDao.addNewChat(chatDto);
-        return Results.ok().addHeader("Access-Control-Allow-Origin", "*").json().render("New Chat Started");
+        return Results.ok().json().render("New Chat Started");
+            // .addHeader("Access-Control-Allow-Origin", "*")
+            // .addHeader("Access-Control-Allow-Credentials", "true");
+
     }
 
     public Result getChats(@PathParam("sender_id") Long sender_id) {

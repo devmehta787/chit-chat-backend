@@ -19,11 +19,11 @@ public class ChatDao {
     @Transactional
     public ChatDto addNewChat(ChatDto chatDto) {
         EntityManager entityManager = entityManagerProvider.get();
-        Chat chat = new Chat();
+        Chat chat = new Chat(chatDto.getSender_id(), chatDto.getReceiver_id(), chatDto.getMessage_content());
 
-        chat.setSender_id(chatDto.getSender_id());
-        chat.setReceiver_id(chatDto.getReceiver_id());
-        chat.setMessage_content(chatDto.getMessage_content());
+        // chat.setSender_id(chatDto.getSender_id());
+        // chat.setReceiver_id(chatDto.getReceiver_id());
+        // chat.setMessage_content(chatDto.getMessage_content());
 
         entityManager.persist(chat);
 

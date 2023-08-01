@@ -5,7 +5,8 @@ import com.google.inject.Inject;
 import java.math.BigInteger;
 import java.util.List;
 
-import javax.websocket.server.PathParam;
+// import javax.websocket.server.PathParam;
+import ninja.params.PathParam;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -36,6 +37,11 @@ public class FriendController {
         //     e.printStackTrace();
         //     return Results.ok().json().render("Not Found");
         // }
+    }
+
+    public Result getFriendsById(@PathParam("id") Long userId) {
+        log.debug(userId);
+        return Results.ok().json().render(userId);
     }
 
     public Result deleteFriend(@PathParam("friend_id") Long friend_id){

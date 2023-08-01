@@ -37,6 +37,8 @@ import ninja.Router;
 import ninja.application.ApplicationRoutes;
 import ninja.utils.NinjaProperties;
 
+import java.lang.ModuleLayer.Controller;
+
 import com.google.inject.Inject;
 
 // import controllers.ApiController;
@@ -45,6 +47,7 @@ import controllers.ChatController;
 // import controllers.ArticleController;
 // import controllers.ChatController;
 import controllers.FriendController;
+import controllers.HeaderController;
 // import controllers.LoginLogoutController;
 import controllers.UserController;
 
@@ -103,13 +106,16 @@ public class Routes implements ApplicationRoutes {
         ///////////////////////////////////////////////////////////////////////    
 //        router.GET().route("/assets/webjars/{fileName: .*}").with(AssetsController::serveWebJars);
 //        router.GET().route("/assets/{fileName: .*}").with(AssetsController::serveStatic);
-        
-        ///////////////////////////////////////////////////////////////////////
-        // Index / Catchall shows index page
-        ///////////////////////////////////////////////////////////////////////
-        //        router.GET().route("/.*").with(ApplicationController::index);
+
+///////////////////////////////////////////////////////////////////////
+// Index / Catchall shows index page
+///////////////////////////////////////////////////////////////////////
+//        router.GET().route("/.*").with(ApplicationController::index);
 
 
+
+
+        router.OPTIONS().route("/.*").with(HeaderController::setheaderMethod);
         // 1. **Account Creation/Login Functionality:**
         //     - POST /API/register: Create a new user account.
         //     - POST /API/login: Authenticate and log in as a user.
@@ -126,7 +132,7 @@ public class Routes implements ApplicationRoutes {
         //     - DELETE /API/friends/(friend Id): Remove a friend from the user's friend list.
         
         router.POST().route("/user/addFriend").with(FriendController::addFriend);
-        router.GET().route("/user/getFriends/{userId}").with(FriendController::getFriends);
+        router.GET().route("/friend/getFriendsById/{id}").with(FriendController::getFriendsById);
         // router.DELETE().route("/user/deleteFriend/{friendId}").with(FriendController::deleteFriend);
         
 

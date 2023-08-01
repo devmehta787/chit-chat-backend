@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.annotation.processing.Generated;
@@ -37,8 +38,8 @@ public class Chat {
     public Long receiver_id;
     @Column(name = "message_content")
     public String message_content;
-    @Column(name = "time_stamp")
-    public Time time_stamp;
+    // @Column(name = "time_stamp")
+    // public String time_stamp;
 
     public Long getMessage_id() {
         return message_id;
@@ -71,13 +72,13 @@ public class Chat {
         this.message_content = message_content;
     }
 
-    public Time getTime_stamp() {
-        return time_stamp;
-    }
+    // public String getTime_stamp() {
+    //     return time_stamp;
+    // }
 
-    public void setTime_stamp(Time time_stamp) {
-        this.time_stamp = time_stamp;
-    }
+    // public void setTime_stamp(String time_stamp) {
+    //     this.time_stamp = time_stamp;
+    // }
 
     public Chat() {
 
@@ -88,8 +89,15 @@ public class Chat {
         this.sender_id = sender_id;
         this.receiver_id = receiver_id;
         this.message_content = message_content;
-        long timeInMillis = System.currentTimeMillis();
-        Date date = new Date(timeInMillis);
-        this.time_stamp = new Time(date.getTime());
+        // long timeInMillis = System.currentTimeMillis();
+        // Date date = new Date(System.currentTimeMillis());
+
+        // Timestamp t = new Timestamp(System.currentTimeMillis());
+        // String s = t.toString();
+        // System.out.println(s.substring(11, 16));
+        // this.time_stamp = s.substring(11, 16);
+        
+        
+        // this.time_stamp = new Time(Time.getTime());
     }
 }

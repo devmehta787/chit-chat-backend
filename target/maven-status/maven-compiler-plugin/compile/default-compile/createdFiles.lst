@@ -25,4 +25,5 @@ dao\SetupDao.class
 models\Chat.class
 dao\ChatDao.class
 controllers\ArticleController.class
+controllers\HeaderController.class
 conf\Module.class
