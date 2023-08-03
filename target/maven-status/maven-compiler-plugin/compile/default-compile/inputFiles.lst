@@ -9,6 +9,8 @@ C:\Users\devme\eclipse-workspace\demo\src\main\java\models\Chat.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\models\FriendDto.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\dao\SetupDao.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\dao\ArticleDao.java
+C:\Users\devme\eclipse-workspace\demo\src\main\java\controllers\ChatEndpoint.java
+C:\Users\devme\eclipse-workspace\demo\src\main\java\models\Message.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\controllers\ApiController.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\models\ChatDto.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\filters\LoggerFilter.java
@@ -24,6 +26,7 @@ C:\Users\devme\eclipse-workspace\demo\src\main\java\models\ArticleDto.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\models\User.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\conf\Module.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\controllers\ChatController.java
+C:\Users\devme\eclipse-workspace\demo\src\main\java\controllers\endpointConfig.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\controllers\ArticleController.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\models\Friend.java
 C:\Users\devme\eclipse-workspace\demo\src\main\java\models\UserDto.java

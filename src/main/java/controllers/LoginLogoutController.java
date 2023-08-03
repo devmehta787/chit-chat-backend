@@ -42,6 +42,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import dao.UserDao;
+import models.User;
 
 @Singleton
 public class LoginLogoutController {
@@ -64,9 +65,9 @@ public class LoginLogoutController {
                             @Param("rememberMe") Boolean rememberMe,
                             Context context) {
 
-        boolean isUserNameAndPasswordValid = userDao.isUserAndPasswordValid(username, password);
+        User isUserNameAndPasswordValid = userDao.isUserAndPasswordValid(username, password);
 
-        if (isUserNameAndPasswordValid) {
+        if (isUserNameAndPasswordValid != null) {
             Session session = context.getSession();
             session.put("username", username);
 

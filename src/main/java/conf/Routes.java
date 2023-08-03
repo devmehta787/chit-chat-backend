@@ -44,6 +44,7 @@ import com.google.inject.Inject;
 // import controllers.ApiController;
 import controllers.ApplicationController;
 import controllers.ChatController;
+// import controllers.ChatEndpoint;
 // import controllers.ArticleController;
 // import controllers.ChatController;
 import controllers.FriendController;
@@ -124,8 +125,7 @@ public class Routes implements ApplicationRoutes {
         router.POST().route("/user/login").with(UserController::loginUser);
 
         router.GET().route("/user/getByName/{name}").with(UserController::getUserById);
-
-
+        router.GET().route("/user/getUsers").with(UserController::getUser);
         // 2. **Friend Management:**
         //     - POST /API/friends: Add a friend using their contact number.
         //     - GET /API/friends: Retrieve the list of a user's friends.
@@ -146,6 +146,13 @@ public class Routes implements ApplicationRoutes {
         //     - GET /API/chats/(chat Id)/message: Retrieve the messages for a specific chat.
         //     - DELETE /API/chats/(chat Id): End a chat with a friend.
 
+
+        //commenting next line
+
+        // router.WS().route("/chat/ping").with(ChatEndpoint::handshake);
+        
+        // router.WS().route("/chat/close/{userId}").with(ChatController::onClose);
+        // router.WS().route("/user/startChat").with(ChatController::startChat);
 
         router.POST().route("/user/startChat").with(ChatController::startChat);
 

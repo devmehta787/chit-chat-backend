@@ -14,6 +14,7 @@
 package controllers;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -48,10 +49,9 @@ public class UserController {
     }
 
     public Result loginUser(UserDto userDto) {
-        // log.info(userDto);
-        boolean isValid = userDao.isUserAndPasswordValid(userDto.getUsername(), userDto.getPassword());
-        if (isValid) {
-            return Results.ok().json().render("Login Successful");
+        User user = userDao.isUserAndPasswordValid(userDto.getUsername(), userDto.getPassword());
+        if (user.username != null) {
+            return Results.ok().json().render(user);
         } else {
             return Results.ok().json().render("Login Failed");
         }
@@ -61,5 +61,10 @@ public class UserController {
         log.info(name);
         User user = userDao.getUserByName(name);
         return Results.ok().json().render(user);
+    }
+    public Result getUser() {
+        // log.info(name);
+        List<User> userList = userDao.getUser();
+        return Results.ok().json().render(userList);
     }
 }

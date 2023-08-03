@@ -11,6 +11,7 @@ import models.ChatDto;
 import ninja.Result;
 import ninja.Results;
 import ninja.params.PathParam;
+// import ninja.websockets.WebSocketHandshake;
 
 public class ChatController {
     @Inject
@@ -23,9 +24,7 @@ public class ChatController {
         return Results.ok().json().render("New Chat Started");
             // .addHeader("Access-Control-Allow-Origin", "*")
             // .addHeader("Access-Control-Allow-Credentials", "true");
-
     }
-
     public Result getChats(@PathParam("sender_id") Long sender_id) {
         log.info(sender_id);
         List<Chat> c = chatDao.getChatsBySenderId(sender_id);

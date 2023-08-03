@@ -71,7 +71,7 @@ public class UserDao {
         
     }
     @UnitOfWork
-    public boolean isUserAndPasswordValid(String username, String password) {
+    public User isUserAndPasswordValid(String username, String password) {
 
         if (username != null && password != null) {
 
@@ -85,23 +85,22 @@ public class UserDao {
 
                 if (user.password.equals(password)) {
 
-                    return true;
+                    return user;
                 }
 
             }
 
         }
-
-        return false;
-
+        return null;
     }
+
     public User getUserByName(String name) {
         EntityManager entityManager = entityManagerProvider.get();
         List<User> q = entityManager.createQuery("SELECT x FROM User x WHERE username = :nameparam",
                 User.class)
                 .setParameter("nameparam", name)
                 .getResultList();
-                User user = q.get(0);
+        User user = q.get(0);
         // User user = getSingleResult(q.setParameter("usernameParam", name));
         // UserDto userDto = new UserDto();
         // userDto.setUsername(user.getUsername());
@@ -110,6 +109,15 @@ public class UserDao {
         // userDto.setEmail(user.getEmail());
         // userDto.setPhone(user.getPhone());
         return user;
+    }
+    
+
+    public List<User> getUser() {
+        EntityManager entityManager = entityManagerProvider.get();
+        List<User> q = entityManager.createQuery("SELECT x FROM User x",
+                User.class).getResultList();
+        // List<User> user = q.get(0);
+        return q;
     }
 
     /**
